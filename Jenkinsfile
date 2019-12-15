@@ -20,18 +20,18 @@ pipeline {
       agent any
       steps {
         script {
-          def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/company*") != ""
+          def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/exchange*") != ""
           echo "REMOVE_FLAG: ${REMOVE_FLAG}"
           if(REMOVE_FLAG){
-            sh 'docker image rm -f $(docker image ls -q *${DOCKERHUBNAME}/company*)'
+            sh 'docker image rm -f $(docker image ls -q *${DOCKERHUBNAME}/exchange*)'
           }
         }
 
         withCredentials([usernamePassword(credentialsId: 'liker163ID', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           sh 'docker login -u $USERNAME -p $PASSWORD'
-          sh 'docker image build -t ${DOCKERHUBNAME}/company .'
-          sh 'docker push ${DOCKERHUBNAME}/company'
-          sh 'docker run -d -p 8754:8754 --network smc-net --name smccompany ${DOCKERHUBNAME}/company'
+          sh 'docker image build -t ${DOCKERHUBNAME}/exchange .'
+          sh 'docker push ${DOCKERHUBNAME}/exchange'
+          sh 'docker run -d -p 8754:8754 --network smc-net --name smcexchange ${DOCKERHUBNAME}/exchange'
         }
       }
     }
