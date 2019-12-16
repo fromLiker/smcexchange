@@ -7,4 +7,5 @@ ENV PROJECT_ARTIFACTID="smcexchange" PROJECT_VERSION="0.0.1-SNAPSHOT"
 #当使用本地目录为源目录时，推荐使用 COPY
 COPY target/$PROJECT_ARTIFACTID-$PROJECT_VERSION.jar /smcexchange/exchange.jar
 EXPOSE 8754
-ENTRYPOINT ["java", "-jar", "/smcexchange/exchange.jar"]
+# ENTRYPOINT ["java", "-jar", "/smcexchange/exchange.jar"]
+ENTRYPOINT ["java","-Xms200m","-Xmx300m","-jar","/smcexchange/exchange.jar"]
