@@ -34,7 +34,7 @@ pipeline {
           sh 'docker image build -t ${DOCKERHUBNAME}/exchange .'
           // sh 'docker push ${DOCKERHUBNAME}/exchange'
           // sh 'docker run -d -p 8754:8754 --network smc-net --name smcexchange ${DOCKERHUBNAME}/exchange'
-          sh 'docker run -d -p 8754:8754 --memory=400M --name smcexchange ${DOCKERHUBNAME}/exchange'
+          sh 'docker run -d -p 8754:8754 --memory=400M --network smc-net --name SMC-Exchange ${DOCKERHUBNAME}/exchange'
         }
       }
     }
