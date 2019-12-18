@@ -21,6 +21,9 @@ public class StockExchangeEntity extends AuditEntity {
 	@Column(name = "exbrief")
 	private String brief;
 
+	@Column(name = "contactnum")
+	private String contactnum;
+
 	@Column(name = "address")
 	private String address;
 
@@ -56,6 +59,14 @@ public class StockExchangeEntity extends AuditEntity {
 		this.brief = brief;
 	}
 
+	public String getContactnum() {
+		return contactnum;
+	}
+
+	public void setContactnum(String contactnum) {
+		this.contactnum = contactnum;
+	}
+	
 	public String getAddress() {
 		return address;
 	}

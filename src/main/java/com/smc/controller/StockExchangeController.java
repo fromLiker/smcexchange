@@ -9,20 +9,30 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/admin/manage/exchange")
+// @RequestMapping("/admin/manage/exchange")
 public class StockExchangeController {
 
 	@Autowired
 	private ExchangeService exchangeService;
 
 
-	@PostMapping
+	@PostMapping("/admin/manage/exchange")
 	public CommonResult createExchange(@RequestBody StockExchangeEntity stcokExchange) {
 		return exchangeService.save(stcokExchange);
 	}
 
-	@PutMapping
+	@PutMapping("/admin/manage/exchange")
 	public CommonResult updateExchange(@RequestBody StockExchangeEntity stcokExchange) {
 		return exchangeService.updateStockExchange(stcokExchange);
+	}
+
+	@GetMapping("/search/exchange")
+	public CommonResult searchExchange() {
+		return exchangeService.findAll();
+	}
+
+	@GetMapping("/search/exchange/id/{id}")
+	public CommonResult searchExchange(@PathVariable int id) {
+		return exchangeService.findById(id);
 	}
 }
